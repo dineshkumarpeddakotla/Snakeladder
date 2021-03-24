@@ -23,6 +23,9 @@ System.out.println("Current Position =" +Position);
 break;
 case Ladder:
 Position +=Rolldice;
+if(Position>Max_Position){
+Position-=Rolldice;
+}
 System.out.println("Ladder");
 System.out.println("Current Position =" +Position);
 break;
