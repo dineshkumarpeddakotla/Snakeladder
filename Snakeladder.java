@@ -27,6 +27,7 @@ System.out.println("Player1 Current Position =" +Player1_Position);
 break;
 case Ladder:
 Player1_Position +=Player1_Rolldice;
+
 if(Player1_Position>Max_Position){
 Player1_Position-=Player1_Rolldice;
 }
@@ -45,7 +46,7 @@ break;
 default: System.out.println("Invalid");
 }
 Player1_Roll_Count++;
-System.out.println("Player1 Roll Count = " +Player1_Roll_Count);
+
 int Player2_Play_option = ((int)(Math.random()*3)+1);
 int Player2_Rolldice = ((int)(Math.random()*6)+1);
 System.out.println("Player2 Rolldice="+Player2_Rolldice);
@@ -67,7 +68,7 @@ break;
 case Snake:
 Player2_Position -=Player2_Rolldice;
 if(Player2_Position<Min_Position){
-Player2_Position=0;
+Player2_Position =0;
 }
 
 System.out.println("Snake");
@@ -76,15 +77,19 @@ break;
 default: System.out.println("Invalid");
 }
 Player2_Roll_Count++;
-System.out.println("Player1 Roll Count = " +Player2_Roll_Count);
- 
+
 }
 if(Player1_Position == Max_Position){
 System.out.println("Player1 Wins");
+System.out.println("Player1 Roll Count = " +Player1_Roll_Count);
+
 }
 if(Player2_Position == Max_Position){
 System.out.println("Player2 Wins");
+System.out.println("Player2 Roll Count = " +Player2_Roll_Count);
+
 }
 
 }
+
 }
