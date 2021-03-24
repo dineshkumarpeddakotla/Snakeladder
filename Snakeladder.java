@@ -11,6 +11,7 @@ class Snakeladder {
 public static void main(String[] args){
 System.out.println("Welcome to Snake and Ladder Game");
 int Position = 0;
+int Roll_Count = 0;
 while(Position < Max_Position){
 int Play_option = ((int)(Math.random()*3)+1);
 int Rolldice = ((int)(Math.random()*6)+1);
@@ -40,6 +41,8 @@ System.out.println("Current Position =" +Position);
 break;
 default: System.out.println("Invalid");
 }
+Roll_Count++;
+System.out.println("Roll Count = " +Roll_Count);
  }
 }
 }
