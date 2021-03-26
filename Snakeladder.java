@@ -1,95 +1,105 @@
 package snakeladder;
 import java.util.Random;
-     
+import java.util.Scanner;     
 class Snakeladder {
+//declared and assigined the static variables
 	 public static final int No_Play = 1;
         public static final int Ladder = 2;
         public static final int Snake =3;
 	public static final int Max_Position=100;
 	 public static final int Min_Position=0;
+	public static int Position=0;
+//creating constructor
+    String name;
+    Snakeladder(String name){
+        this.name=name;
+    }
+//to return the object as a string
+    public String toString(){
+        return (name);
+    }
 
+//calling main method
 public static void main(String[] args){
 System.out.println("Welcome to Snake and Ladder Game");
-int Player1_Position = 0;
-int Player1_Roll_Count = 0;
-int Player2_Position = 0;
-int Player2_Roll_Count = 0;
+Scanner sc = new Scanner(System.in);
+//calling constructor
+System.out.println("Enter the Player One Name");
+        Snakeladder player1 = new Snakeladder(sc.nextLine());
+System.out.println("Enter the Player Two Name");
+        Snakeladder player2 = new Snakeladder(sc.nextLine());
+//declared and  assigned values to varaibles
+         int Player1_Roll_Count=0;
+        int Player2_Roll_Count=0;
+        int Roll_Count = 0;
+        while (Position < Max_Position) {
+//calling a method
+            if ( player1.SnakeandLadder()<=Max_Position) {
+                System.out.println(player1+" : Roll a die");
+                player1.SnakeandLadder();
+                Player1_Roll_Count++;
+                System.out.println(player1+ " : Roll Count = " + Player1_Roll_Count);
 
-while(Player1_Position < Max_Position && Player2_Position<Max_Position){
-int Player1_Play_option = ((int)(Math.random()*3)+1);
-int Player1_Rolldice = ((int)(Math.random()*6)+1);
-System.out.println("Player1 Rolldice="+Player1_Rolldice);
-switch ( Player1_Play_option){
-case No_Play:
-Player1_Position = Player1_Position;
-System.out.println("No_Play");
-System.out.println("Player1 Current Position =" +Player1_Position);
-break;
-case Ladder:
-Player1_Position +=Player1_Rolldice;
-
-if(Player1_Position>Max_Position){
-Player1_Position-=Player1_Rolldice;
-}
-System.out.println("Ladder");
-System.out.println("Player1 Current Position =" +Player1_Position);
-break;
-case Snake:
-Player1_Position -=Player1_Rolldice;
-if(Player1_Position<Min_Position){
-Player1_Position=0;
-}
-
-System.out.println("Snake");
-System.out.println("Player1 Current Position =" +Player1_Position);
-break;
-default: System.out.println("Invalid");
-}
-Player1_Roll_Count++;
-
-int Player2_Play_option = ((int)(Math.random()*3)+1);
-int Player2_Rolldice = ((int)(Math.random()*6)+1);
-System.out.println("Player2 Rolldice="+Player2_Rolldice);
-
-switch ( Player2_Play_option){
-case No_Play:
-Player2_Position = Player2_Position;
-System.out.println("No_Play");
-System.out.println("Player2 Current Position =" +Player2_Position);
-break;
-case Ladder:
-Player2_Position +=Player2_Rolldice;
-if(Player2_Position>Max_Position){
-Player2_Position-=Player2_Rolldice;
-}
-System.out.println("Ladder");
-System.out.println("Player2 Current Position =" +Player2_Position);
-break;
-case Snake:
-Player2_Position -=Player2_Rolldice;
-if(Player2_Position<Min_Position){
-Player2_Position =0;
-}
-
-System.out.println("Snake");
-System.out.println("Player2 Current Position =" +Player2_Position);
-break;
-default: System.out.println("Invalid");
-}
-Player2_Roll_Count++;
+                if (player2.SnakeandLadder()<=Max_Position) {
+                    System.out.println(player2+" : Roll a die");
+                    player2.SnakeandLadder();
+                    Player2_Roll_Count++;
+                    System.out.println(player2+" : Roll Count = " + Player2_Roll_Count);
+                }
+                Roll_Count++;
+                System.out.println("Players Total Roll Count = " + Roll_Count);
+            }
+if(player1.SnakeandLadder()==Max_Position){
+System.out.println(player1+" : wins");
 
 }
-if(Player1_Position == Max_Position){
-System.out.println("Player1 Wins");
-System.out.println("Player1 Roll Count = " +Player1_Roll_Count);
-
-}
-if(Player2_Position == Max_Position){
-System.out.println("Player2 Wins");
-System.out.println("Player2 Roll Count = " +Player2_Roll_Count);
+if(player1.SnakeandLadder()==Max_Position){
+System.out.println(player2+" : wins");
 
 }
 
-}
 
+        }
+
+
+    }
+    public int SnakeandLadder(){
+        int Play_option = ((int) (Math.random() * 3) + 1);
+            int Rolldice = ((int) (Math.random() * 6) + 1);
+            System.out.println("Rolldice=" + Rolldice);
+//giving the play option
+            switch (Play_option) {
+                case No_Play:
+                 int current_Position = Position;
+                    System.out.println("No_Play");
+                    System.out.println("Current Position =" +current_Position);
+                    break;
+                case Ladder:
+                    Position += Rolldice;
+                    if (Position > Max_Position) {
+                        Position -= Rolldice;
+                    }
+                    System.out.println("Ladder");
+                    System.out.println("Current Position =" + Position);
+                    break;
+                case Snake:
+                    Position -= Rolldice;
+                    if (Position < Min_Position) {
+                        Position = 0;
+                    }
+
+                    System.out.println("Snake");
+                    System.out.println("Current Position =" + Position);
+                    break;
+                default:
+                    System.out.println("Invalid");
+            }
+//player get the ladder again get chances to play
+        if(Play_option==Ladder){
+            System.out.println("Player roll a die");
+            SnakeandLadder();
+        }
+//return the value
+        return Position;
+    }
 }
