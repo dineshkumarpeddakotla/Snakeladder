@@ -14,7 +14,7 @@ class Snakeladder {
     Snakeladder(String name){
         this.name=name;
     }
-//to return the object as a string
+//to return the object  as a string 
     public String toString(){
         return (name);
     }
@@ -29,40 +29,29 @@ System.out.println("Enter the Player One Name");
 System.out.println("Enter the Player Two Name");
         Snakeladder player2 = new Snakeladder(sc.nextLine());
 //declared and  assigned values to varaibles
-         int Player1_Roll_Count=0;
-        int Player2_Roll_Count=0;
-        int Roll_Count = 0;
-        while (Position < Max_Position) {
-//calling a method
-            if ( player1.SnakeandLadder()<=Max_Position) {
-                System.out.println(player1+" : Roll a die");
-                player1.SnakeandLadder();
-                Player1_Roll_Count++;
-                System.out.println(player1+ " : Roll Count = " + Player1_Roll_Count);
+        int player1_count=0;
+        int player2_count=0;
+        while (Position<Max_Position){
+            System.out.println(player1+ " Rolls a die");
+            Position=player1.SnakeandLadder();
+            player1_count++;
+            System.out.println(player1+" Roll count is " +player1_count);
+            if (Position==Max_Position){
 
-                if (player2.SnakeandLadder()<=Max_Position) {
-                    System.out.println(player2+" : Roll a die");
-                    player2.SnakeandLadder();
-                    Player2_Roll_Count++;
-                    System.out.println(player2+" : Roll Count = " + Player2_Roll_Count);
-                }
-                Roll_Count++;
-                System.out.println("Players Total Roll Count = " + Roll_Count);
+            System.out.println(player1+" : wins");
+                break;
             }
-if(player1.SnakeandLadder()==Max_Position){
-System.out.println(player1+" : wins");
+            System.out.println(player2+ " Rolls a die");
+            Position=player2.SnakeandLadder();
+            player2_count++;
+            System.out.println(player2+" Roll count is " +player2_count);
+            if (Position==Max_Position){
+                System.out.println(player2+" : wins");
+                break;
 
-}
-if(player1.SnakeandLadder()==Max_Position){
-System.out.println(player2+" : wins");
-
-}
-
-
-        }
-
-
-    }
+  }
+ }
+}      
     public int SnakeandLadder(){
         int Play_option = ((int) (Math.random() * 3) + 1);
             int Rolldice = ((int) (Math.random() * 6) + 1);
